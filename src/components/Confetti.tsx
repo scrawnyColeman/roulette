@@ -7,13 +7,13 @@ type Props = {
 };
 
 const ConfettiComp: FC<Props> = ({ chaosLevel }) => {
-  //   const { width, height } = useWindowSize();
+  // const { width, height } = useWindowSize();
   return (
     <Confetti
       className="w-screen"
-      numberOfPieces={20 * chaosLevel}
-      wind={chaosLevel}
-      gravity={chaosLevel}
+      numberOfPieces={2 * chaosLevel}
+      //   wind={chaosLevel}
+      //   gravity={chaosLevel}
     />
   );
 };
