@@ -28,6 +28,7 @@ const Roulette: FC<Props> = ({ options }) => {
 
   return (
     <>
+      <div className="text-center text-5xl mt-7">↓</div>
       <div
         className="w-full flex flex-col items-center mt-44 gap-4"
         style={{
