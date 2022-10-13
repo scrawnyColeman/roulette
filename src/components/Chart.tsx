@@ -7,16 +7,16 @@ const Chart: FC<{ options: { background: string; content: string }[] }> = ({
     {options.map(({ background, content }, index) => (
       <div
         key={`${index}:${content}`}
-        className="w-20 h-20 absolute slice top-1/2 left-1/2 origin-top-left"
+        className="flex justify-center items-center w-20 h-20 absolute slice top-1/2 left-1/2 origin-top-left font-bold rounded-full"
         style={{
           zIndex: index,
           background,
           transform: `rotate(${
             (360 / options.length) * index + 1
-          }deg) translateX(80px)`,
+          }deg) translateX(60px)`,
         }}
       >
-        {index}:{content}
+        {content}
       </div>
     ))}
   </div>

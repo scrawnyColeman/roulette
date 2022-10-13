@@ -29,7 +29,7 @@ const Roulette: FC<Props> = ({ options }) => {
   return (
     <>
       <div
-        className="w-full flex flex-col items-center mt-52 gap-4"
+        className="w-full flex flex-col items-center mt-44 gap-4"
         style={{
           transition: `all ${wheelSpinDuration}ms ease`,
           transform: `rotate(${targetRotation}deg)`,
@@ -41,12 +41,8 @@ const Roulette: FC<Props> = ({ options }) => {
       </div>
 
       <div
-        style={{
-          position: "absolute",
-          inset: "auto 1rem 1rem 1rem",
-          display: "flex",
-          justifyContent: "center",
-        }}
+        className="absolute flex justify-center"
+        style={{ inset: "auto 1rem 1rem 1rem" }}
       >
         <button
           style={{ opacity: isAnimating ? 0.25 : 1 }}
