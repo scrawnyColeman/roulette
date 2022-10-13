@@ -53,11 +53,18 @@ const Roulette: FC = () => {
         />
       </div>
 
-      <div>
+      <div
+        style={{
+          position: "absolute",
+          inset: "auto 1rem 1rem 1rem",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <button
           style={{ opacity: isAnimating ? 0.25 : 1 }}
           disabled={isAnimating}
-          className="border border-rose-400 px-4 py-2 rounded-xl hover:bg-red-300 focus:outline focus:outline-slate-900"
+          className="border border-rose-400 px-4 py-2 rounded-xl hover:bg-red-300 bg-red-100 focus:outline-slate-900"
           onClick={() => {
             if (isAnimating) return;
             const r = 360 + Math.floor(Math.random() * 360);
