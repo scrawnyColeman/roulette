@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useState } from "react";
-import useWebAnimations from "@wellyshen/use-web-animations";
 
 import Chart from "./Chart";
 

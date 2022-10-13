@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
 
-export default () => (
+const SEO = () => (
   <Head>
     <title>Spin the shitty wheel!</title>
     <meta name="description" content="Spin the shitty wheel!" />
@@ -13,3 +13,5 @@ export default () => (
     />
   </Head>
 );
+
+export default SEO;
