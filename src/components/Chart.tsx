@@ -6,20 +6,18 @@ const Chart = forwardRef<
 >(({ options }, ref) => (
   <div
     ref={ref}
-    className="bg-emerald-500 overflow-hidden w-52 h-52 rounded-full relative"
+    className="container bg-emerald-500  w-52 h-52 rounded-full relative"
   >
     {options.map(({ background, content }, index) => (
       <div
         key={`${index}:${content}`}
-        className="w-full h-full origin-top-left absolute slice top-1/2 left-1/2"
+        className="w-20 h-20 absolute slice top-1/2 left-1/2 origin-top-left"
         style={{
-          transform:
-            index + 1 !== options.length
-              ? `rotate(${index * (360 / options.length)}deg)`
-              : `rotate(${index * (360 / options.length) - 90}deg)`,
-
           zIndex: index,
           background,
+          transform: `rotate(${
+            (360 / options.length) * index + 1
+          }deg) translateX(200px)`,
         }}
       >
         {index}:{content}
