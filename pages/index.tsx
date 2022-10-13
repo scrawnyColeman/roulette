@@ -7,9 +7,10 @@ import Confetti from "../src/components/Confetti";
 
 type Props = {
   chaosLevel: number;
+  options: string[];
 };
 
-const Home: NextPage<Props> = ({ chaosLevel }) => {
+const Home: NextPage<Props> = ({ chaosLevel, options }) => {
   return (
     <>
       <SEO />
@@ -17,7 +18,7 @@ const Home: NextPage<Props> = ({ chaosLevel }) => {
         <Header chaosLevel={chaosLevel} />
         {chaosLevel <= 10 && (
           <>
-            <Roulette />
+            <Roulette options={options} />
             <Confetti chaosLevel={chaosLevel} />
           </>
         )}

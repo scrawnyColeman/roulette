@@ -3,22 +3,15 @@ import useWebAnimations from "@wellyshen/use-web-animations";
 
 import Chart from "./Chart";
 
-const chartOptions = [
-  {
-    content: "Libs",
-    background: "red",
-  },
-  {
-    content: "J",
-    background: "cyan",
-  },
-  {
-    content: "Thomas",
-    background: "orange",
-  },
-];
+type Option = {
+  background: string;
+  content: string;
+};
+type Props = {
+  options: Option[];
+};
 
-const Roulette: FC = () => {
+const Roulette: FC<Props> = ({ options }) => {
   const [isFinished, setFinished] = useState<boolean>(false);
   const [hasRun, setHasRun] = useState<boolean>(false);
 
@@ -61,11 +54,7 @@ const Roulette: FC = () => {
       >
         <Chart
           ref={ref}
-          options={
-            chartOptions.length < 4
-              ? chartOptions.concat(chartOptions)
-              : chartOptions
-          }
+          options={options.length < 4 ? options.concat(options) : options}
         />
       </div>
 
