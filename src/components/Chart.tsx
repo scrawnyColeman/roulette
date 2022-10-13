@@ -4,10 +4,7 @@ const Chart = forwardRef<
   HTMLDivElement,
   { options: { background: string; content: string }[] }
 >(({ options }, ref) => (
-  <div
-    ref={ref}
-    className="container bg-emerald-500  w-52 h-52 rounded-full relative"
-  >
+  <div ref={ref} className="relative">
     {options.map(({ background, content }, index) => (
       <div
         key={`${index}:${content}`}
@@ -17,7 +14,7 @@ const Chart = forwardRef<
           background,
           transform: `rotate(${
             (360 / options.length) * index + 1
-          }deg) translateX(200px)`,
+          }deg) translateX(80px)`,
         }}
       >
         {index}:{content}
