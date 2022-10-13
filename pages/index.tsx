@@ -15,12 +15,8 @@ const Home: NextPage<Props> = ({ chaosLevel }) => {
       <SEO />
       <main>
         <Header chaosLevel={chaosLevel} />
-        {chaosLevel <= 10 && (
-          <>
-            <Roulette />
-            <Confetti chaosLevel={chaosLevel} />
-          </>
-        )}
+        {chaosLevel <= 10 && <Roulette />}
+        <Confetti chaosLevel={chaosLevel} />
       </main>
     </>
   );
