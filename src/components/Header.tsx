@@ -81,7 +81,12 @@ const Header: FC<Props> = ({ chaosLevel }) => {
 
       {chaosLevel > 8 && (
         <div
-          style={{ position: "absolute", zIndex: 0, left: "calc(50% - 150px)" }}
+          style={{
+            position: "absolute",
+            zIndex: -1,
+            top: "205px",
+            left: "calc(50% - 150px)",
+          }}
         >
           <br />
           {chaosLevel === 11 ? (
