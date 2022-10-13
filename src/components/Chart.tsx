@@ -1,10 +1,9 @@
-import React, { forwardRef } from "react";
+import React, { FC } from "react";
 
-const Chart = forwardRef<
-  HTMLDivElement,
-  { options: { background: string; content: string }[] }
->(({ options }, ref) => (
-  <div ref={ref} className="relative">
+const Chart: FC<{ options: { background: string; content: string }[] }> = ({
+  options,
+}) => (
+  <div className="relative">
     {options.map(({ background, content }, index) => (
       <div
         key={`${index}:${content}`}
@@ -21,6 +20,6 @@ const Chart = forwardRef<
       </div>
     ))}
   </div>
-));
+);
 
 export default Chart;
