@@ -3,6 +3,8 @@ import React, { FC, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
+const maxRickRollCount = 7;
+
 type Props = {
   chaosLevel: number;
 };
@@ -13,11 +15,28 @@ const Header: FC<Props> = ({ chaosLevel }) => {
 
   return (
     <div className="flex flex-col items-center w-screen text-cyan-500 font-bold text-4xl mt-2">
+      <h1
+        style={{
+          fontSize: rickRollCount + 3 + "rem",
+          lineHeight: rickRollCount + 5 + "rem",
+        }}
+      >
+        {"spin the shitty wheel"
+          .split("")
+          .map((char) =>
+            rickRollCount > Math.random() * maxRickRollCount
+              ? char.toUpperCase()
+              : char
+          )}
+      </h1>
       <div className="flex gap-2">
         <span>Chaos level: </span>
         <span className="animate-bounce w-12">{chaosLevel}</span>
         <button
-          style={{ opacity: chaosLevel === 1 ? 0.2 : 1 }}
+          style={{
+            opacity: chaosLevel === 1 ? 0.2 : 1,
+            fontSize: "1rem",
+          }}
           disabled={chaosLevel === 1}
           onClick={() => {
             push({ pathname: "/", query: { c: chaosLevel - 1 } }, undefined, {
@@ -32,10 +51,10 @@ const Header: FC<Props> = ({ chaosLevel }) => {
           style={{
             opacity: chaosLevel >= 10 && !rickRollCount ? 0.2 : 1,
             zIndex: 99999,
-            transform: `scale(${Math.ceil(Math.exp(rickRollCount + 1) / 10)})`,
+            fontSize: `${Math.ceil(Math.exp(rickRollCount + 1) / 10)}rem`,
           }}
           onClick={() => {
-            if (chaosLevel < 10 || rickRollCount > 5) {
+            if (chaosLevel < 10 || rickRollCount > maxRickRollCount) {
               setRickRollCount(0);
               push({ pathname: "/", query: { c: chaosLevel + 1 } }, undefined, {
                 shallow: true,
