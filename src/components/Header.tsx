@@ -79,7 +79,11 @@ const Header: FC<Props> = ({ chaosLevel }) => {
           style={{ position: "absolute", zIndex: 0, left: "calc(50% - 150px)" }}
         >
           <br />
-          <Image src="/ahh.gif" alt="AHHHH" width={300} height={300} />
+          {chaosLevel === 11 ? (
+            <Image src={"/rickroll.gif"} width={300} height={300} />
+          ) : (
+            <Image src={"/ahh.gif"} width={300} height={300} />
+          )}
         </div>
       )}
     </>
