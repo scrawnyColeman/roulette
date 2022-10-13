@@ -64,7 +64,7 @@ const Roulette: FC = () => {
             setTargetRotation(currentRotation + r);
           }}
         >
-          Animate
+          Spin!
         </button>
       </div>
     </>
