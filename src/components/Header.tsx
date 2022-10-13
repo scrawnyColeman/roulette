@@ -10,7 +10,7 @@ type Props = {
 };
 
 const Header: FC<Props> = ({ chaosLevel }) => {
-  const { push } = useRouter();
+  const { push, query } = useRouter();
   const [rickRollCount, setRickRollCount] = useState(0);
 
   return (
@@ -41,9 +41,13 @@ const Header: FC<Props> = ({ chaosLevel }) => {
             }}
             disabled={chaosLevel === 1}
             onClick={() => {
-              push({ pathname: "/", query: { c: chaosLevel - 1 } }, undefined, {
-                shallow: true,
-              });
+              push(
+                { pathname: "/", query: { ...query, c: chaosLevel - 1 } },
+                undefined,
+                {
+                  shallow: true,
+                }
+              );
               setRickRollCount(0);
             }}
           >
@@ -59,7 +63,7 @@ const Header: FC<Props> = ({ chaosLevel }) => {
               if (chaosLevel < 10 || rickRollCount > maxRickRollCount) {
                 setRickRollCount(0);
                 push(
-                  { pathname: "/", query: { c: chaosLevel + 1 } },
+                  { pathname: "/", query: { ...query, c: chaosLevel + 1 } },
                   undefined,
                   {
                     shallow: true,
