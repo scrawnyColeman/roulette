@@ -1,20 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import useWebAnimations from "@wellyshen/use-web-animations";
-import type { AnimateOptions } from "@wellyshen/use-web-animations";
 
 import Chart from "./Chart";
-
-const animationOptions: AnimateOptions = {
-  keyframes: {
-    transform: `rotate(${360 + Math.floor(Math.random() * 360)}deg)`,
-  },
-  animationOptions: {
-    delay: 500,
-    duration: 3000,
-    easing: "ease-in-out",
-  },
-  autoPlay: false,
-};
 
 const chartOptions = [
   {
@@ -32,26 +19,70 @@ const chartOptions = [
 ];
 
 const Roulette: FC = () => {
-  const { ref, animate } = useWebAnimations<HTMLDivElement>({
-    ...animationOptions,
-    onFinish: (props) => {
-      console.log("finish", { props });
+  const [isFinished, setFinished] = useState<boolean>(false);
+  const [hasRun, setHasRun] = useState<boolean>(false);
+
+  const resetState = () => {
+    setFinished(false);
+    setHasRun(false);
+  };
+
+  const rotate = (math: Math) =>
+    `rotate(${360 + math.floor(math.random() * 360)}deg)`;
+
+  const { ref, playState, getAnimation } = useWebAnimations<HTMLDivElement>({
+    keyframes: {
+      transform: rotate(Math),
     },
+    animationOptions: {
+      delay: 500,
+      duration: 3000,
+      easing: "ease-in-out",
+    },
+    autoPlay: true,
   });
 
-  return (
-    <div>
-      <Chart
-        ref={ref}
-        options={
-          chartOptions.length < 4
-            ? chartOptions.concat(chartOptions)
-            : chartOptions
-        }
-      />
+  useEffect(() => {
+    if (playState === "finished") {
+      setFinished(true);
+    }
+    if (playState === "running") {
+      setHasRun(true);
+    }
+  }, [playState]);
 
-      <button onClick={() => animate(animationOptions)}>Animate</button>
-    </div>
+  return (
+    <>
+      <div
+        className="w-full flex flex-col items-center mt-52 gap-4"
+        style={{
+          transform: isFinished && hasRun ? rotate(Math) : "none",
+        }}
+      >
+        <Chart
+          ref={ref}
+          options={
+            chartOptions.length < 4
+              ? chartOptions.concat(chartOptions)
+              : chartOptions
+          }
+        />
+      </div>
+
+      <div>
+        <button
+          className="border border-rose-400 px-4 py-2 rounded-xl hover:bg-red-300 focus:outline focus:outline-slate-900"
+          onClick={() => {
+            resetState();
+            const animation = getAnimation();
+            animation?.cancel();
+            animation?.play();
+          }}
+        >
+          Animate
+        </button>
+      </div>
+    </>
   );
 };
 
