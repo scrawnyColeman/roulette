@@ -3,6 +3,8 @@ import useWebAnimations from "@wellyshen/use-web-animations";
 
 import Chart from "./Chart";
 
+const wheelSpinDuration = 3000;
+
 const chartOptions = [
   {
     content: "Libs",
@@ -19,48 +21,32 @@ const chartOptions = [
 ];
 
 const Roulette: FC = () => {
-  const [isFinished, setFinished] = useState<boolean>(false);
-  const [hasRun, setHasRun] = useState<boolean>(false);
-
-  const resetState = () => {
-    setFinished(false);
-    setHasRun(false);
-  };
-
-  const rotate = (math: Math) =>
-    `rotate(${360 + math.floor(math.random() * 360)}deg)`;
-
-  const { ref, playState, getAnimation } = useWebAnimations<HTMLDivElement>({
-    keyframes: {
-      transform: rotate(Math),
-    },
-    animationOptions: {
-      delay: 500,
-      duration: 3000,
-      easing: "ease-in-out",
-    },
-    autoPlay: true,
-  });
+  const [currentRotation, setCurrentRotation] = useState<number>(0);
+  const [targetRotation, setTargetRotation] = useState<number>(0);
+  const isAnimating = currentRotation !== targetRotation;
 
   useEffect(() => {
-    if (playState === "finished") {
-      setFinished(true);
+    if (isAnimating) {
+      const tId = setTimeout(() => {
+        setCurrentRotation(targetRotation);
+        console.log("stop");
+      }, wheelSpinDuration);
+      console.log("start");
+
+      return () => clearTimeout(tId);
     }
-    if (playState === "running") {
-      setHasRun(true);
-    }
-  }, [playState]);
+  }, [isAnimating]);
 
   return (
     <>
       <div
         className="w-full flex flex-col items-center mt-52 gap-4"
         style={{
-          transform: isFinished && hasRun ? rotate(Math) : "none",
+          transition: `all ${wheelSpinDuration}ms ease`,
+          transform: `rotate(${targetRotation}deg)`,
         }}
       >
         <Chart
-          ref={ref}
           options={
             chartOptions.length < 4
               ? chartOptions.concat(chartOptions)
@@ -71,12 +57,13 @@ const Roulette: FC = () => {
 
       <div>
         <button
+          style={{ opacity: isAnimating ? 0.25 : 1 }}
+          disabled={isAnimating}
           className="border border-rose-400 px-4 py-2 rounded-xl hover:bg-red-300 focus:outline focus:outline-slate-900"
           onClick={() => {
-            resetState();
-            const animation = getAnimation();
-            animation?.cancel();
-            animation?.play();
+            if (isAnimating) return;
+            const r = 360 + Math.floor(Math.random() * 360);
+            setTargetRotation(currentRotation + r);
           }}
         >
           Animate
