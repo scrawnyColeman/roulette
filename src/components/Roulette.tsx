@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 
 import Chart from "./Chart";
 
-const wheelSpinDuration = 3000;
+const wheelSpinDuration = 10000;
 
 type Option = {
   background: string;
@@ -51,7 +51,7 @@ const Roulette: FC<Props> = ({ options }) => {
           className="border border-rose-400 px-4 py-2 rounded-xl hover:bg-red-300 bg-red-100 focus:outline-slate-900"
           onClick={() => {
             if (isAnimating) return;
-            const r = 360 + Math.floor(Math.random() * 360);
+            const r = 15 * 360 + Math.floor(Math.random() * 360);
             setTargetRotation(currentRotation + r);
           }}
         >

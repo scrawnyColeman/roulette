@@ -15,7 +15,7 @@ const Header: FC<Props> = ({ chaosLevel }) => {
 
   return (
     <>
-      <div className="flex flex-col items-center w-screen text-cyan-500 font-bold text-4xl mt-2">
+      <div className="flex flex-col items-center w-screen text-cyan-500 font-bold text-xl mt-2 md:text-4xl text-center">
         <h1
           style={{
             fontSize: rickRollCount + 3 + "rem",

@@ -13,7 +13,7 @@ const Chart: FC<{ options: { background: string; content: string }[] }> = ({
           background,
           transform: `rotate(${
             (360 / options.length) * index + 1
-          }deg) translateX(60px)`,
+          }deg) translateX(${options.length > 8 ? "100px" : "50px"})`,
         }}
       >
         {content}
