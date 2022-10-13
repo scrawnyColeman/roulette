@@ -11,9 +11,9 @@ const ConfettiComp: FC<Props> = ({ chaosLevel }) => {
   return (
     <Confetti
       className="w-screen"
-      numberOfPieces={2 * chaosLevel}
-      //   wind={chaosLevel}
-      //   gravity={chaosLevel}
+      numberOfPieces={10 * chaosLevel}
+      wind={chaosLevel}
+      gravity={chaosLevel}
     />
   );
 };

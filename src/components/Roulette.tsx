@@ -5,22 +5,14 @@ import Chart from "./Chart";
 
 const wheelSpinDuration = 3000;
 
-const chartOptions = [
-  {
-    content: "Libs",
-    background: "red",
-  },
-  {
-    content: "J",
-    background: "cyan",
-  },
-  {
-    content: "Thomas",
-    background: "orange",
-  },
-];
-
-const Roulette: FC = () => {
+type Option = {
+  background: string;
+  content: string;
+};
+type Props = {
+  options: Option[];
+};
+const Roulette: FC<Props> = ({ options }) => {
   const [currentRotation, setCurrentRotation] = useState<number>(0);
   const [targetRotation, setTargetRotation] = useState<number>(0);
   const isAnimating = currentRotation !== targetRotation;
@@ -45,11 +37,7 @@ const Roulette: FC = () => {
         }}
       >
         <Chart
-          options={
-            chartOptions.length < 4
-              ? chartOptions.concat(chartOptions)
-              : chartOptions
-          }
+          options={options.length < 4 ? options.concat(options) : options}
         />
       </div>
 

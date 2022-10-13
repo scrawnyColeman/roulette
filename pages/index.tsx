@@ -5,17 +5,23 @@ import Roulette from "../src/components/Roulette";
 import SEO from "../src/components/SEO";
 import Confetti from "../src/components/Confetti";
 
-type Props = {
-  chaosLevel: number;
+type Option = {
+  background: string;
+  content: string;
 };
 
-const Home: NextPage<Props> = ({ chaosLevel }) => {
+type Props = {
+  chaosLevel: number;
+  options: Option[];
+};
+
+const Home: NextPage<Props> = ({ chaosLevel, options }) => {
   return (
     <>
       <SEO />
       <main>
         <Header chaosLevel={chaosLevel} />
-        {chaosLevel <= 10 && <Roulette />}
+        {chaosLevel <= 10 && <Roulette options={options} />}
         <Confetti chaosLevel={chaosLevel} />
       </main>
     </>
