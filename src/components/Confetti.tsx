@@ -8,6 +8,13 @@ type Props = {
 
 const ConfettiComp: FC<Props> = ({ chaosLevel }) => {
   //   const { width, height } = useWindowSize();
-  return <Confetti />;
+  return (
+    <Confetti
+      className="w-screen"
+      numberOfPieces={20 * chaosLevel}
+      wind={1}
+      gravity={0.5}
+    />
+  );
 };
 export default ConfettiComp;
