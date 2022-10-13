@@ -29,9 +29,7 @@ const Roulette: FC = () => {
     if (isAnimating) {
       const tId = setTimeout(() => {
         setCurrentRotation(targetRotation);
-        console.log("stop");
       }, wheelSpinDuration);
-      console.log("start");
 
       return () => clearTimeout(tId);
     }
