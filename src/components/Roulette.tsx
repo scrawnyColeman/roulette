@@ -24,7 +24,7 @@ const Roulette: FC<Props> = ({ options }) => {
 
       return () => clearTimeout(tId);
     }
-  }, [isAnimating]);
+  }, [isAnimating, targetRotation]);
 
   return (
     <>

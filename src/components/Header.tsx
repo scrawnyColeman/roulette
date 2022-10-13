@@ -22,7 +22,7 @@ const Header: FC<Props> = ({ chaosLevel }) => {
             lineHeight: rickRollCount + 5 + "rem",
           }}
         >
-          {"spin the shitty wheel"
+          {"Spin the shitty wheel"
             .split("")
             .map((char) =>
               rickRollCount > Math.random() * maxRickRollCount
@@ -81,9 +81,9 @@ const Header: FC<Props> = ({ chaosLevel }) => {
         >
           <br />
           {chaosLevel === 11 ? (
-            <Image src={"/rickroll.gif"} width={300} height={300} />
+            <Image alt="Rick" src={"/rickroll.gif"} width={300} height={300} />
           ) : (
-            <Image src={"/ahh.gif"} width={300} height={300} />
+            <Image alt="ahhhh" src={"/ahh.gif"} width={300} height={300} />
           )}
         </div>
       )}
