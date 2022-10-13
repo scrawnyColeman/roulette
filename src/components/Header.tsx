@@ -36,6 +36,7 @@ const Header: FC<Props> = ({ chaosLevel }) => {
           <button
             style={{
               opacity: chaosLevel === 1 ? 0.2 : 1,
+              zIndex: 99999,
               fontSize: "1rem",
             }}
             disabled={chaosLevel === 1}
